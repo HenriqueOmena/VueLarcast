@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets go Vue</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="root">
+        <ul>
+
+            <li v-for="name in names" v-text="name"></li>
+
+        </ul>
+
+        <input id="names" type="text" v-model="newName">
+
+        <button @click="addName">Add Name</button>
+    </div>
+    <script>
+        const app = new Vue({
+
+            el: '#root',
+
+            data: {
+                newName: '',
+                names: ['Joe', 'Mary', 'Jane', 'Jack']
+            },
+
+            methods: {
+                addName() {
+                    this.names.push(this.newName)
+                    this.newName = ''
+                }
+            },
+
+            mounted() {
+                // let btn = document.querySelector('button')
+
+                // btn.addEventListener('click', () => {
+                //     let name = document.querySelector('#names');
+
+                //     console.log(app.names);
+                //     app.names.push(name.value)
+                //     console.log(app.names);
+
+                //     name.value = '';
+                // })
+            }
+
+        })
+    </script>
+</body>
+</html>
