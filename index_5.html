@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets go Vue</title>
+    <style>
+        .color-red { color:red;}
+        .color-blue { color:blue;}
+        .is-loading { background: green}
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="root">
+        <!-- <button @click="method" :title="title">Passe o mouse Aqui</button> -->
+        <!-- <h1 :class="className">Ola</h1> -->
+
+        <!-- <button :class="{ 'is-loading' : true }"> Click me</button> -->
+        <button :class="{ 'is-loading' : isLoading }" @click="toggleClass"> Click me</button>
+    </div>
+    <script>
+        const app = new Vue({
+
+            el: '#root',
+
+            data: {
+                title: 'Inserido pelo JS',
+                className: 'color-red',
+                isLoading: false
+            },
+
+            methods: {
+                toggleClass() {
+
+                    this.isLoading = true;
+
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
