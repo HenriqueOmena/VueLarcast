@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets go Vue</title>
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="root">
+        <h1 @click="teste">
+
+            {{ reversedMessage }}
+
+        </h1>
+
+        <h2 style="color: red;"> Tarefas não realizadas </h2>
+        <ul>
+
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+
+        </ul>
+
+        <h2 style="color: green;"> Tarefas realizadas </h2>
+        <ul>
+
+            <li v-for="task in tasks"  v-if="task.completed" v-text="task.description"></li>
+
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+
+            el: '#root',
+
+            data: {
+
+                message: "Ola =(",
+
+                tasks: [
+
+                    {description: 'Ir ate a loja', completed: false},
+                    {description: 'Estudar Vue', completed: true},
+                    {description: 'Jogar FuteVolei', completed: true},
+                    {description: 'Correr a noite', completed: false},
+                    {description: 'Conversar Com amigos', completed: true},
+                    {description: 'Comer bem durante o dia', completed: true},
+                    {description: 'Comer pouco durante a noite', completed: false},
+
+                ],
+
+
+            },
+
+            methods: {
+                teste() {
+                    console.log(1234);
+                }
+            },
+
+            computed: {
+                incompleteTasks() {
+
+                    return this.tasks.filter( task => !task.completed )
+
+                },
+                reversedMessage() {
+
+                    return this.message.split('').reverse().join('')
+
+                }
+
+            }
+
+        })
+    </script>
+</body>
+</html>
