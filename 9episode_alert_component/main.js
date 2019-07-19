@@ -28,7 +28,7 @@ Vue.component('message', {
     data() {
         return {
 
-            isVisible:true
+            showModal: false
 
         };
      },
