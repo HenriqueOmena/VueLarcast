@@ -120,28 +120,41 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 Vue.component('tabs', {
   props: ['title', 'body', 'footer'],
-  template: "\n    <div>\n        <div class=\"tabs is-boxed\">\n            <ul>\n                <li class=\"is-active\">\n                    <a>\n                        <span class=\"icon is-small\"><i class=\"fas fa-image\" aria-hidden=\"true\"></i></span>\n                        <span>Pictures</span>\n                    </a>\n                </li>\n                <li>\n                    <a>\n                        <span class=\"icon is-small\"><i class=\"fas fa-music\" aria-hidden=\"true\"></i></span>\n                        <span>Music</span>\n                    </a>\n                </li>\n                <li>\n                    <a>\n                        <span class=\"icon is-small\"><i class=\"fas fa-film\" aria-hidden=\"true\"></i></span>\n                        <span>Videos</span>\n                    </a>\n                </li>\n                <li>\n                    <a>\n                        <span class=\"icon is-small\"><i class=\"far fa-file-alt\" aria-hidden=\"true\"></i></span>\n                        <span>Documents</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"tabs-details\">\n            <slot></slot>\n        </div>\n    </div>\n     ",
-  created: function created() {
-    this.tabs = this.$children;
-    console.log(this.$children);
-  },
+  template: "\n    <div>\n        <div class=\"tabs is-boxed\">\n            <ul>\n                <li v-for=\"tab in tabs\" :class=\"{ 'is-active' : tab.isActive }\">\n\n                    <a href=\"#\" @click=\"selectTab(tab)\">\n                        {{ tab.name }}\n                    </a>\n\n                </li>\n            </ul>\n        </div>\n\n        <div class=\"tabs-details\">\n            <slot></slot>\n        </div>\n    </div>\n     ",
   data: function data() {
     return {
       tabs: []
     };
   },
+  created: function created() {
+    this.tabs = this.$children;
+    console.log(this.$children);
+  },
   methods: {
-    hideModal: function hideModal() {
-      this.isVisible = false;
+    selectTab: function selectTab(selectedTab) {
+      this.tabs.forEach(function (tab) {
+        tab.isActive = tab.name == selectedTab.name;
+      });
     }
   }
 });
 Vue.component('tab', {
-  template: "\n        <div>\n            <slot></slot>\n        </div>\n    ",
+  template: "\n        <div v-show=\"isActive\">\n            <slot></slot>\n        </div>\n    ",
   props: {
     name: {
       required: true
+    },
+    selected: {
+      default: false
     }
+  },
+  data: function data() {
+    return {
+      isActive: false
+    };
+  },
+  mounted: function mounted() {
+    this.isActive = this.selected;
   }
 });
 new Vue({

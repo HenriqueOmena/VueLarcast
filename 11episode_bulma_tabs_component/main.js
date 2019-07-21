@@ -7,29 +7,12 @@ Vue.component('tabs', {
     <div>
         <div class="tabs is-boxed">
             <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                        <span>Pictures</span>
+                <li v-for="tab in tabs" :class="{ 'is-active' : tab.isActive }">
+
+                    <a href="#" @click="selectTab(tab)">
+                        {{ tab.name }}
                     </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                        <span>Music</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-                        <span>Videos</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                        <span>Documents</span>
-                    </a>
+
                 </li>
             </ul>
         </div>
@@ -40,22 +23,26 @@ Vue.component('tabs', {
     </div>
      `,
 
-     created() {
-         this.tabs = this.$children;
-         console.log(this.$children);
-     },
-
-    data() {
+     data() {
         return {
 
             tabs: []
         };
      },
 
+     created() {
+         this.tabs = this.$children;
+         console.log(this.$children);
+     },
+
      methods : {
 
-        hideModal() {
-            this.isVisible = false;
+        selectTab(selectedTab) {
+            this.tabs.forEach(tab =>  {
+
+                tab.isActive = (tab.name == selectedTab.name)
+
+            })
         }
      }
 })
@@ -63,18 +50,31 @@ Vue.component('tabs', {
 Vue.component('tab', {
 
     template: `
-        <div>
+        <div v-show="isActive">
             <slot></slot>
         </div>
     `,
 
     props: {
 
-        name: { required: true }
+        name: { required: true },
+
+        selected: { default: false }
+
+    },
+
+    data() {
+
+        return {
+            isActive:false
+        }
+    },
+
+    mounted() {
+
+        this.isActive = this.selected
 
     }
-
-
 })
 
 
