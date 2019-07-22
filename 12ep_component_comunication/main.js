@@ -1,10 +1,10 @@
-Vue.component('tabs', {
+Vue.component('coupon', {
 
     props: ['title'],
 
     template:
     `
-    <input placeholder="Digite seu codigo de cupon">
+    <input placeholder="Digite seu codigo de cupon" @blur="onCouponApplied">
 
     `,
 
@@ -22,23 +22,29 @@ Vue.component('tabs', {
 
      methods : {
 
-        selectTab(selectedTab) {
-            this.tabs.forEach(tab =>  {
+        onCouponApplied() {
 
-                tab.isActive = (tab.name == selectedTab.name)
+            this.$emit('applied')
 
-            })
         }
+
      }
 })
 
 new Vue({
     el: '#root',
 
+    data: {
+
+        couponApplied: false
+
+    },
+
     methods:  {
 
-        onCouponApllied() {
+        onCouponApplied() {
 
+            this.couponApplied = true
             alert('aplicou cupon')
 
         }

@@ -118,9 +118,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-Vue.component('tabs', {
+Vue.component('coupon', {
   props: ['title'],
-  template: "\n    <input placeholder=\"Digite seu codigo de cupon\">\n\n    ",
+  template: "\n    <input placeholder=\"Digite seu codigo de cupon\" @blur=\"onCouponApplied\">\n\n    ",
   data: function data() {
     return {};
   },
@@ -129,17 +129,19 @@ Vue.component('tabs', {
     console.log(this.$children);
   },
   methods: {
-    selectTab: function selectTab(selectedTab) {
-      this.tabs.forEach(function (tab) {
-        tab.isActive = tab.name == selectedTab.name;
-      });
+    onCouponApplied: function onCouponApplied() {
+      this.$emit('applied');
     }
   }
 });
 new Vue({
   el: '#root',
+  data: {
+    couponApplied: false
+  },
   methods: {
-    onCouponApllied: function onCouponApllied() {
+    onCouponApplied: function onCouponApplied() {
+      this.couponApplied = true;
       alert('aplicou cupon');
     }
   }
