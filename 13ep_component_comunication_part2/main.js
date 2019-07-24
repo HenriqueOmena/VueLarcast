@@ -6,13 +6,13 @@ window.Event = new class {
 
     fire(event, data = null) {
 
-        this.vue.$emit(event, data)
+        this.vue.$emit(event, data);
 
     }
 
     listen(event, callback) {
 
-        this.vue.$on(event, callback)
+        this.vue.$on(event, callback);
 
     }
 
@@ -26,12 +26,12 @@ Vue.component('coupon', {
 
         onCouponApplied() {
 
-            Event.fire('applied')
+            Event.fire('applied');
 
         }
 
      }
-})
+});
 
 new Vue({
     el: '#root',
@@ -44,8 +44,8 @@ new Vue({
 
     created() {
 
-        Event.listen('applied', () => alert ('lidando com isto !'))
+        Event.listen('applied', () => alert ('lidando com isto !'));
 
     }
 
-})
+});
