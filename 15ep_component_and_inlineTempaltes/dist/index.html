@@ -10,16 +10,13 @@
 </head>
 <body>
     <div id="root">
-        <modal>
-            <!-- Pode ser qualquer coisa aqui ao invez de template pode ser h1 div etc -->
-            <template slot="header">Aqui vai o titulo</template>
-            <template slot="footer">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
-            </template>
+        <progress-view inline-template="">
+            <div>
+                <h1>Seu progresso esta em {{ completionRate }}%</h1>
 
-            Temos muito
-        </modal>
+                <p> <button @click="completionRate += 10"> Update completetion</button></p>
+            </div>
+        </progress-view>
 
 
     </div>
@@ -29,6 +26,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-    <script src="main.js"></script>
+    <script src="/main.1f19ae8e.js"></script>
 </body>
 </html>
