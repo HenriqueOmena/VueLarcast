@@ -8,7 +8,7 @@
 
 <script>
 
-import Counter from './components/Counter.vue';
+import Counter from './assets/components/Counter';
 
 export default {
   name: 'app',
