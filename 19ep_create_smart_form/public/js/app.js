@@ -5,6 +5,8 @@ class Errors {
     }
 
     has(field) {
+        console.log('o field', field);
+        console.log(this.errors.hasOwnProperty(field));
         return this.errors.hasOwnProperty(field);
     }
 
@@ -16,6 +18,7 @@ class Errors {
 
     get(field) {
         if (this.errors[field]) {
+            console.log('field no get', field);
             return this.errors[field][0];
         }
     }
@@ -36,14 +39,17 @@ new Vue({
     data: {
         name: '',
         description:'',
-        errors: new Errors
+        errors: new Errors()
     },
 
     methods: {
         onSubmit() {
             axios.post('/projects', this.$data)
                 .then(response => alert('passou no then de sucesso'))
-                .catch(error => error.response.data)
+                .catch(error => {
+                    console.log(error.response.data)
+                    return this.errors.record(error.response.data)
+                })
         }
     }
 

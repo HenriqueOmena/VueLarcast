@@ -16,7 +16,7 @@
 <body>
 
     <div id="app" class="container">
-        <form action="/projects" method="post" @submit.prevent="onSubmit" @keydown="errors.clear(name)">
+        <form action="/projects" method="post" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
             <div class="control">
 
                 <label for="name" class="label">Nome do Projeto</label>
