@@ -14,7 +14,6 @@ class ProjectsController extends Controller
     }
 
     public function store() {
-
         $this->validate(request(), [
             'name'        => 'required|min: 5',
             'description' => 'required'

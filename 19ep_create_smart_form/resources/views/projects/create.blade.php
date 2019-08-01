@@ -39,7 +39,7 @@
 
             <div class="control">
 
-                <button class="button is-primary margin-top" {{-- :disabled="errors.any()" --}}>Guardar</button>
+                <button class="button is-primary margin-top" :disabled="errors.any()">Guardar</button>
 
             </div>
         </form>

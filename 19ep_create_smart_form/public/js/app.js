@@ -42,10 +42,15 @@ new Vue({
     methods: {
         onSubmit() {
             axios.post('/projects', this.$data)
-                .then(response => alert('passou no then de sucesso'))
-                .catch(error => {
-                    this.errors.record(error.response.data)
-                })
+                .then(this.onSucess)
+                .catch(error => this.errors.record(error.response.data))
+        },
+
+        onSucess(response) {
+            alert(response.data.message);
+
+            this.name = '';
+            this.description = '';
         }
     }
 
