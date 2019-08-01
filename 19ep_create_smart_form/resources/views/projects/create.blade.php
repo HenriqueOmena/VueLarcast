@@ -14,7 +14,13 @@
     </style>
 </head>
 <body>
-
+    @if (!empty($projects))
+    <div class="columns">
+        @foreach ($projects as $project)
+            <div class="column">{{ $project->name }}</div>
+        @endforeach
+    </div>
+    @endif
     <div id="app" class="container">
         <form action="/projects" method="post" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
             <div class="control">
