@@ -30,12 +30,24 @@ class Errors {
     }
 }
 
+class Form {
+    reset(vm) {
+
+
+
+    }
+}
+
 new Vue({
     el: '#app',
 
     data: {
-        name: '',
-        description:'',
+        form: new Form({
+
+            name: '',
+            description: ''
+
+        }),
         errors: new Errors()
     },
 
@@ -48,9 +60,7 @@ new Vue({
 
         onSucess(response) {
             alert(response.data.message);
-
-            this.name = '';
-            this.description = '';
+            form.reset()
         }
     }
 
