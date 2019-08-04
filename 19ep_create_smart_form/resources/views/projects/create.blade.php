@@ -22,14 +22,14 @@
     </div>
     @endif
     <div id="app" class="container">
-        <form action="/projects" method="post" @submit.prevent="onSubmit" @keydown="errors.clear($event.target.name)">
+        <form action="/projects" method="post" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
             <div class="control">
 
                 <label for="name" class="label">Nome do Projeto</label>
 
-                <input type="text" id="name" class="input" name="name" v-model="name">
+                <input type="text" id="name" class="input" name="name" v-model="form.name">
 
-                <span class="help is-danger" v-if="errors.has('name')" v-text="errors.get('name')"></span>
+                <span class="help is-danger" v-if="errors.has('form.name')" v-text="errors.get('form.name')"></span>
 
             </div>
 
@@ -37,9 +37,9 @@
 
                 <label for="description" class="label">Descrição do Projeto</label>
 
-                <input type="text" id="description" class="input" name="description" v-model="description">
+                <input type="text" id="description" class="input" name="description" v-model="form.description">
 
-                <span class="help is-danger" v-if="errors.has('description')" v-text="errors.get('description')"></span>
+                <span class="help is-danger" v-if="errors.has('form.description')" v-text="errors.get('form.description')"></span>
 
             </div>
 
