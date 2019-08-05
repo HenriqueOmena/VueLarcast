@@ -29,7 +29,7 @@
 
                 <input type="text" id="name" class="input" name="name" v-model="form.name">
 
-                <span class="help is-danger" v-if="errors.has('form.name')" v-text="errors.get('form.name')"></span>
+                <span class="help is-danger" v-if="form.errors.has('name')" v-text="form.errors.get('name')"></span>
 
             </div>
 
@@ -39,7 +39,7 @@
 
                 <input type="text" id="description" class="input" name="description" v-model="form.description">
 
-                <span class="help is-danger" v-if="errors.has('form.description')" v-text="errors.get('form.description')"></span>
+                <span class="help is-danger" v-if="form.errors.has('description')" v-text="form.errors.get('description')"></span>
 
             </div>
 
